@@ -1,13 +1,26 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using CommandLine;
+using SalaryPayingSystem;
 
 Parser.Default.ParseArguments<CommandLineOptions>(args)
     .WithParsed(options =>
     {
-        Console.WriteLine($"Employee ID: {options.EmployeeID}");
-        Console.WriteLine($"Name: {options.Name}");
-        Console.WriteLine($"Address: {options.Address}");
-        Console.WriteLine($"Salary: {options.Salary}");
+        switch (options.Action)
+        {
+            case ActionType.AddEmp:
+                Console.WriteLine("Performing AddEmp action:");
+                Console.WriteLine($"Employee ID: {options.EmployeeId}");
+                Console.WriteLine($"Name: {options.Name}");
+                Console.WriteLine($"Address: {options.Address}");
+                Console.WriteLine($"Salary: {options.Salary}");
+                // Here you can implement logic specific to AddEmp action
+                break;
+            // Add cases for other actions if needed
+
+            default:
+                Console.WriteLine($"Unknown action: {options.Action}");
+                break;
+        }
                 
         // Here you can perform further operations, such as adding the employee to a database
         // or performing some other business logic.
