@@ -3,4 +3,5 @@
 public enum ActionType
 {
     AddEmp,
+    DelEmp,
 }

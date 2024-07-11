@@ -16,6 +16,9 @@ class CommandLineOptions
     [Value(3, MetaName = "Address", Required = true, HelpText = "Employee address")]
     public string Address { get; set; }
 
-    [Value(4, MetaName = "Salary", Required = true, HelpText = "Employee salary")]
-    public decimal Salary { get; set; }
+    [Value(4, MetaName = "EmployeeType", Required = true, HelpText = "Employee type")]
+    public EmployeeType EmployeeType { get; set; }
+    
+    [Value(5, MetaName = "Salary", Required = true, HelpText = "Employee salary")]
+    public IEnumerable<string> Salary { get; set; }
 }

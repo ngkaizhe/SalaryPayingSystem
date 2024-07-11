@@ -12,7 +12,6 @@ Parser.Default.ParseArguments<CommandLineOptions>(args)
                 Console.WriteLine($"Employee ID: {options.EmployeeId}");
                 Console.WriteLine($"Name: {options.Name}");
                 Console.WriteLine($"Address: {options.Address}");
-                Console.WriteLine($"Salary: {options.Salary}");
                 // Here you can implement logic specific to AddEmp action
                 break;
             // Add cases for other actions if needed
