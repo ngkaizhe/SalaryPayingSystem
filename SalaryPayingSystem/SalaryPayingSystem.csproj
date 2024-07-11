@@ -11,4 +11,10 @@
       <PackageReference Include="CommandLineParser" Version="2.9.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="..\ReadMe.md">
+        <Link>SolutionItems\ReadMe.md</Link>
+      </Content>
+    </ItemGroup>
+
 </Project>
