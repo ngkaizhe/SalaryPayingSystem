@@ -1,35 +1,35 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using CommandLine;
-using SalaryPayingSystem;
+using SalaryPayingSystem.AddEmp;
+using SalaryPayingSystem.CommandLineOption;
+using SalaryPayingSystem.DelEmp;
 
-Parser.Default.ParseArguments<CommandLineOptions>(args)
-    .WithParsed(options =>
-    {
-        switch (options.Action)
-        {
-            case ActionType.AddEmp:
-                Console.WriteLine("Performing AddEmp action:");
-                Console.WriteLine($"Employee ID: {options.EmployeeId}");
-                Console.WriteLine($"Name: {options.Name}");
-                Console.WriteLine($"Address: {options.Address}");
-                // Here you can implement logic specific to AddEmp action
-                break;
-            // Add cases for other actions if needed
 
-            default:
-                Console.WriteLine($"Unknown action: {options.Action}");
-                break;
-        }
-                
-        // Here you can perform further operations, such as adding the employee to a database
-        // or performing some other business logic.
-    })
-    .WithNotParsed(errors =>
-    {
-        // If there are any parsing errors, you can handle them here
-        // For example, print error messages or help text.
-        foreach (var error in errors)
+var addEmpService = new AddEmpService();
+var delEmpService = new DelEmpService();
+
+Parser.Default.ParseArguments<
+        AddEmpOptions, 
+        DelEmpOptions,
+        TimeCardOptions,
+        SalesReceiptOptions,
+        ServiceChargeOptions,
+        ChgEmpOptions,
+        PaydayOptions>(args)
+    .MapResult(
+        (AddEmpOptions options) => 0,
+        (DelEmpOptions options) => 0,
+        (TimeCardOptions options) => 0,
+        (SalesReceiptOptions options) => 0,
+        (ServiceChargeOptions options) => 0,
+        (ChgEmpOptions options) => 0,
+        (PaydayOptions options) => 0,
+        errors =>
         {
-            Console.WriteLine(error.ToString());
-        }
-    });
+            foreach (var error in errors)
+            {
+                Console.WriteLine(error.ToString());
+            }
+
+            return 1;
+        });
