@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace SalaryPayingSystem.CommandLineOption;
+namespace SalaryPayingSystem.DelEmp;
 
 [Verb("DelEmp", HelpText = "Delete a employee")]
 public class DelEmpOptions

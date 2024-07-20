@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace SalaryPayingSystem.CommandLineOption;
+namespace SalaryPayingSystem.ServiceCharge;
 
 [Verb("ServiceCharge", HelpText = "Register for guild service fee")]
 public class ServiceChargeOptions

@@ -1,8 +1,12 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using CommandLine;
 using SalaryPayingSystem.AddEmp;
+using SalaryPayingSystem.ChgEmp;
 using SalaryPayingSystem.CommandLineOption;
 using SalaryPayingSystem.DelEmp;
+using SalaryPayingSystem.SalesReceipt;
+using SalaryPayingSystem.ServiceCharge;
+using SalaryPayingSystem.TimeCard;
 
 
 var addEmpService = new AddEmpService();

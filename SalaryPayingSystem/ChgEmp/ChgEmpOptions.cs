@@ -1,9 +1,9 @@
 ﻿using CommandLine;
 
-namespace SalaryPayingSystem.CommandLineOption;
+namespace SalaryPayingSystem.ChgEmp;
 
 [Verb("ChgEmp", HelpText = "Register for guild service fee")]
-class ChgEmpOptions
+public class ChgEmpOptions
 {
     [Value(0, MetaName = "EmpId", Required = true, HelpText = "Employee ID")]
     public string EmpId { get; set; }

@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace SalaryPayingSystem.CommandLineOption;
+namespace SalaryPayingSystem.SalesReceipt;
 
 [Verb("SalesReceipt", HelpText = "Register for sales receipt")]
 public class SalesReceiptOptions

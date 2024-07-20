@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace SalaryPayingSystem.CommandLineOption;
+namespace SalaryPayingSystem.TimeCard;
 
 [Verb("TimeCard", HelpText = "Register for absents or presents")]
 public class TimeCardOptions
