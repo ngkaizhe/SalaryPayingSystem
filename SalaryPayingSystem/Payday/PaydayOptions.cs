@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace SalaryPayingSystem.CommandLineOption;
+namespace SalaryPayingSystem.Payday;
 
 [Verb("Payday", HelpText = "Register for guild service fee")]
 public class PaydayOptions

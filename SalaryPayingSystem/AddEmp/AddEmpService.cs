@@ -1,10 +1,9 @@
-﻿using SalaryPayingSystem.CommandLineOption;
-
-namespace SalaryPayingSystem.AddEmp;
+﻿namespace SalaryPayingSystem.AddEmp;
 
 public class AddEmpService
 {
-    public void Execute(AddEmpOptions options)
+    public int Execute(AddEmpOptions options)
     {
+        return 0;
     }
 }

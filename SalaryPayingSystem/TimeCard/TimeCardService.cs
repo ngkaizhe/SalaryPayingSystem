@@ -2,8 +2,8 @@
 
 public class TimeCardService
 {
-    public void Execute(TimeCardOptions timeCardOptions)
+    public int Execute(TimeCardOptions timeCardOptions)
     {
-        
+        return 0;
     }
 }

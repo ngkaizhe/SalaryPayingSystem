@@ -1,11 +1,9 @@
-﻿using SalaryPayingSystem.CommandLineOption;
-
-namespace SalaryPayingSystem.Payday;
+﻿namespace SalaryPayingSystem.Payday;
 
 public class PaydayService
 {
-    public void Execute(PaydayOptions paydayOptions)
+    public int Execute(PaydayOptions paydayOptions)
     {
-        
+        return 0;
     }
 }

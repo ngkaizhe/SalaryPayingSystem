@@ -1,11 +1,9 @@
-﻿using SalaryPayingSystem.CommandLineOption;
-
-namespace SalaryPayingSystem.ServiceCharge;
+﻿namespace SalaryPayingSystem.ServiceCharge;
 
 public class ServiceChargeService
 {
-    public void Execute(ServiceChargeOptions serviceChargeOptions)
+    public int Execute(ServiceChargeOptions serviceChargeOptions)
     {
-        
+        return 0;
     }
 }

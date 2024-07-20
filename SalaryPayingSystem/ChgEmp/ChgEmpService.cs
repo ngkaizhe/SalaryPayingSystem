@@ -2,7 +2,8 @@
 
 public class ChgEmpService
 {
-    public void Execute(ChgEmpOptions options)
+    public int Execute(ChgEmpOptions options)
     {
+        return 0;
     }
 }

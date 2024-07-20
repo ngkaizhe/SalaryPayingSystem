@@ -2,8 +2,8 @@
 using CommandLine;
 using SalaryPayingSystem.AddEmp;
 using SalaryPayingSystem.ChgEmp;
-using SalaryPayingSystem.CommandLineOption;
 using SalaryPayingSystem.DelEmp;
+using SalaryPayingSystem.Payday;
 using SalaryPayingSystem.SalesReceipt;
 using SalaryPayingSystem.ServiceCharge;
 using SalaryPayingSystem.TimeCard;
@@ -11,6 +11,11 @@ using SalaryPayingSystem.TimeCard;
 
 var addEmpService = new AddEmpService();
 var delEmpService = new DelEmpService();
+var timeCardService = new TimeCardService();
+var salesReceiptService = new SalesReceiptService();
+var serviceChargeService = new ServiceChargeService();
+var chgEmpService = new ChgEmpService();
+var paydayService = new PaydayService();
 
 Parser.Default.ParseArguments<
         AddEmpOptions, 
@@ -21,13 +26,13 @@ Parser.Default.ParseArguments<
         ChgEmpOptions,
         PaydayOptions>(args)
     .MapResult(
-        (AddEmpOptions options) => 0,
-        (DelEmpOptions options) => 0,
-        (TimeCardOptions options) => 0,
-        (SalesReceiptOptions options) => 0,
-        (ServiceChargeOptions options) => 0,
-        (ChgEmpOptions options) => 0,
-        (PaydayOptions options) => 0,
+        (AddEmpOptions options) => addEmpService.Execute(options),
+        (DelEmpOptions options) => delEmpService.Execute(options),
+        (TimeCardOptions options) => timeCardService.Execute(options),
+        (SalesReceiptOptions options) => salesReceiptService.Execute(options),
+        (ServiceChargeOptions options) => serviceChargeService.Execute(options),
+        (ChgEmpOptions options) => chgEmpService.Execute(options),
+        (PaydayOptions options) => paydayService.Execute(options),
         errors =>
         {
             foreach (var error in errors)

@@ -2,8 +2,8 @@
 
 public class SalesReceiptService
 {
-    public void Execute()
+    public int Execute(SalesReceiptOptions options)
     {
-        
+        return 0;  
     }
 }

@@ -1,10 +1,9 @@
-﻿using SalaryPayingSystem.CommandLineOption;
-
-namespace SalaryPayingSystem.DelEmp;
+﻿namespace SalaryPayingSystem.DelEmp;
 
 public class DelEmpService
 {
-    public void Execute(DelEmpOptions options)
+    public int Execute(DelEmpOptions options)
     {
+        return 0;
     }   
 }
