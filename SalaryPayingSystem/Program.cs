@@ -3,6 +3,7 @@ using CommandLine;
 using SalaryPayingSystem.AddEmp;
 using SalaryPayingSystem.ChgEmp;
 using SalaryPayingSystem.DelEmp;
+using SalaryPayingSystem.Options.AddEmp;
 using SalaryPayingSystem.Payday;
 using SalaryPayingSystem.SalesReceipt;
 using SalaryPayingSystem.ServiceCharge;

@@ -1,39 +1,38 @@
-﻿using SalaryPayingSystem.Employee;
+﻿using SalaryPayingSystem.AddEmp;
+using SalaryPayingSystem.Employees;
+using SalaryPayingSystem.Options.AddEmp.Transactions;
 
-namespace SalaryPayingSystem.AddEmp;
+namespace SalaryPayingSystem.Options.AddEmp;
 
 public class AddEmpService
 {
     public int Execute(AddEmpOptions options)
     {
         var parameters = options.Params.ToList();
+        ITransaction transaction;
         switch (options.EmployeeType)
         {
             case EmployeeType.H:
             {
-                int.TryParse(parameters[0], out var salary);
-                var employee = new Employee.Employee(salary, options.Address);
+                transaction = new AddHourlyEmployee(options.EmpId, options.Name, options.Address, double.Parse(parameters[0]));
+                transaction.Execute();
                 break;
             }
             case EmployeeType.S:
             {
-                int.TryParse(parameters[0], out var salary);
-                var employee = new MonthlyEmployee(salary, 0, options.Address);
+                transaction = new AddMonthlyEmployee(options.EmpId, options.Name, options.Address, double.Parse(parameters[0]));
+                transaction.Execute();
+                break;
+            }
+            case EmployeeType.C:
+            {
+                transaction = new AddCommissionedEmployee(options.EmpId, options.Name, options.Address, double.Parse(parameters[0]), double.Parse(parameters[1]));
+                transaction.Execute();
                 break;
             }
             default:
-            {
-                if (options.EmployeeType is EmployeeType.S)
-                {
-                    int.TryParse(parameters[0], out var salary);
-                    int.TryParse(parameters[1], out var commissionRate);
-                    var employee = new MonthlyEmployee(salary, commissionRate, options.Address);
-                }
-                else
-                {
-                    Console.WriteLine("Invalid employee type");
-                }
-
+            { 
+                Console.WriteLine("Invalid employee type");
                 break;
             }
         }

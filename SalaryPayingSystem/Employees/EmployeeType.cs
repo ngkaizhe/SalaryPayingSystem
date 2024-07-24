@@ -1,4 +1,4 @@
-﻿namespace SalaryPayingSystem.Employee;
+﻿namespace SalaryPayingSystem.Employees;
 
 public enum EmployeeType
 {
