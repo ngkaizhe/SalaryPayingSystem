@@ -1,5 +1,5 @@
 ﻿using SalaryPayingSystem.PayClassifications;
-using SalaryPayingSystem.PaymentSchedule;
+using SalaryPayingSystem.PaymentSchedules;
 
 namespace SalaryPayingSystem.Options.AddEmp.Transactions;
 

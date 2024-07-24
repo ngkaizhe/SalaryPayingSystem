@@ -1,4 +1,4 @@
-﻿namespace SalaryPayingSystem.PaymentSchedule;
+﻿namespace SalaryPayingSystem.PaymentSchedules;
 
 public interface IPaymentSchedule
 {

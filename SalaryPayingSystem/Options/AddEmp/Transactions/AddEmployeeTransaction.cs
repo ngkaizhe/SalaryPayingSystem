@@ -1,8 +1,8 @@
 ﻿using SalaryPayingSystem.Databases;
 using SalaryPayingSystem.Employees;
 using SalaryPayingSystem.PayClassifications;
-using SalaryPayingSystem.PaymentMethod;
-using SalaryPayingSystem.PaymentSchedule;
+using SalaryPayingSystem.PaymentMethods;
+using SalaryPayingSystem.PaymentSchedules;
 
 namespace SalaryPayingSystem.Options.AddEmp.Transactions;
 

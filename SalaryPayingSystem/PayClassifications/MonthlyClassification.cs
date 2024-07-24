@@ -1,8 +1,8 @@
 ﻿namespace SalaryPayingSystem.PayClassifications;
 
-public class MonthlyClassification(double monthlyPay) : IPayClassification
+public class MonthlyClassification(double salary) : IPayClassification
 {
-    private double _monthlyPay = monthlyPay;
+    public double Salary { get; } = salary;
 
     public double CalculatePay()
     {

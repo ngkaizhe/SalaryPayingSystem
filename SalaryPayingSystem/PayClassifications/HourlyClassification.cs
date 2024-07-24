@@ -2,7 +2,7 @@
 
 public class HourlyClassification(double hourlyRate) : IPayClassification
 {
-    private double _hourlyRate = hourlyRate;
+    public double HourlyRate { get; } = hourlyRate;
     private List<TimeCard> _timeCards = [];
 
     public double CalculatePay()

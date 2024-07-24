@@ -1,4 +1,4 @@
-﻿namespace SalaryPayingSystem.PaymentMethod;
+﻿namespace SalaryPayingSystem.PaymentMethods;
 
 public class DirectMethod : IPaymentMethod
 {

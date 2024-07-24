@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalaryPayingSystem", "SalaryPayingSystem\SalaryPayingSystem.csproj", "{CA6234F8-68E2-41A7-88E6-18D97F739FF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalaryPayingSystem.IntegrationTest", "SalaryPayingSystem.IntegrationTest\SalaryPayingSystem.IntegrationTest.csproj", "{38EE6D24-5626-47D1-AF9D-4C7ADDD4337B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{CA6234F8-68E2-41A7-88E6-18D97F739FF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA6234F8-68E2-41A7-88E6-18D97F739FF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA6234F8-68E2-41A7-88E6-18D97F739FF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38EE6D24-5626-47D1-AF9D-4C7ADDD4337B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38EE6D24-5626-47D1-AF9D-4C7ADDD4337B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38EE6D24-5626-47D1-AF9D-4C7ADDD4337B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38EE6D24-5626-47D1-AF9D-4C7ADDD4337B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

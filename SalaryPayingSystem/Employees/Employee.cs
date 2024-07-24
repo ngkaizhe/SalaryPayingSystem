@@ -1,6 +1,6 @@
 ﻿using SalaryPayingSystem.PayClassifications;
-using SalaryPayingSystem.PaymentMethod;
-using SalaryPayingSystem.PaymentSchedule;
+using SalaryPayingSystem.PaymentMethods;
+using SalaryPayingSystem.PaymentSchedules;
 
 namespace SalaryPayingSystem.Employees;
 
@@ -13,9 +13,9 @@ public class Employee(
     IPaymentMethod paymentMethod)
 {
     private string _empId = empId;
-    private string _name = name;
+    public string Name { get; } = name;
     private string _address = address;
-    private IPayClassification _payClassification = payClassification;
-    private IPaymentSchedule _paymentSchedule = paymentSchedule;
-    private IPaymentMethod _paymentMethod = paymentMethod;
+    public IPayClassification PayClassification { get; } = payClassification;
+    public IPaymentSchedule PaymentSchedule { get; } = paymentSchedule;
+    public IPaymentMethod PaymentMethod { get; } = paymentMethod;
 }

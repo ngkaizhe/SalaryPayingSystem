@@ -1,4 +1,4 @@
-﻿namespace SalaryPayingSystem.PaymentSchedule;
+﻿namespace SalaryPayingSystem.PaymentSchedules;
 
 public class WeeklySchedule : IPaymentSchedule
 {

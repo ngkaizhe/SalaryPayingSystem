@@ -1,5 +1,5 @@
-﻿namespace SalaryPayingSystem.PaymentSchedule;
+﻿namespace SalaryPayingSystem.PaymentSchedules;
 
-class MonthlySchedule : IPaymentSchedule
+public class MonthlySchedule : IPaymentSchedule
 {
 }

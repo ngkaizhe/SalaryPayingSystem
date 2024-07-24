@@ -25,4 +25,9 @@ public abstract class PayrollDatabase
     {
         return Employees.Keys.ToList();
     }
+    
+    public static void Clear()
+    {
+        Employees.Clear();
+    }
 }
