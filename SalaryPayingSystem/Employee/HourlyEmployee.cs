@@ -1,15 +1,17 @@
 ﻿namespace SalaryPayingSystem.Employee;
 
-public class HourlyEmployee: Employee
+public class HourlyEmployee
 {
     private int _salary;
+    private string _address;
 
-    public HourlyEmployee(int salary, string address): base(address)
+    public HourlyEmployee(int salary, string address)
     {
         _salary = salary;
+        _address = address;
     }
 
-    public override int GetTotalPay()
+    public int GetTotalPay()
     {
         return _salary;
     }

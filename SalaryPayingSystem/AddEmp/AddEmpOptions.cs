@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using SalaryPayingSystem.Employee;
 
 namespace SalaryPayingSystem.AddEmp;
 
