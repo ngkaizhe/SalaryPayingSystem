@@ -17,4 +17,9 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Options\" />
+      <Folder Include="PaymentSchedule\" />
+    </ItemGroup>
+
 </Project>

@@ -12,7 +12,7 @@ public class AddEmpService
             case EmployeeType.H:
             {
                 int.TryParse(parameters[0], out var salary);
-                var employee = new HourlyEmployee(salary, options.Address);
+                var employee = new Employee.Employee(salary, options.Address);
                 break;
             }
             case EmployeeType.S:
