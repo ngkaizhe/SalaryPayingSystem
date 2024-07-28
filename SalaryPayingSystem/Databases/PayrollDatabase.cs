@@ -11,9 +11,10 @@ public abstract class PayrollDatabase
         Employees.Add(empId, employee);
     }
 
-    public static Employee GetEmployee(string empId)
+    public static Employee? GetEmployee(string empId)
     {
-        return Employees[empId];
+        Employees.TryGetValue(empId, out var employee);
+        return employee;
     }
 
     public static void DeleteEmployee(string empId)
