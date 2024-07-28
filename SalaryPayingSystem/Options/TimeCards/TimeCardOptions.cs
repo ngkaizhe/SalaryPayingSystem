@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace SalaryPayingSystem.TimeCard;
+namespace SalaryPayingSystem.Options.TimeCards;
 
 [Verb("TimeCard", HelpText = "Register for absents or presents")]
 public class TimeCardOptions
@@ -12,5 +12,5 @@ public class TimeCardOptions
     public DateTime Date { get; set; }
     
     [Value(2, MetaName = "hours", Required = true, HelpText = "Hour")]
-    public string Hour { get; set; }
+    public int Hour { get; set; }
 }
