@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using JetBrains.Annotations;
 using SalaryPayingSystem.AddEmp;
 using SalaryPayingSystem.Databases;
@@ -10,13 +11,18 @@ using Xunit;
 namespace SalaryPayingSystem.IntegrationTest.Options.DelEmp;
 
 [TestSubject(typeof(DelEmpService))]
+[Collection("Sequential")]
 public class DelEmpServiceTest
 {
+    public DelEmpServiceTest()
+    {
+        PayrollDatabase.Clear();
+    }
 
     [Fact]
     public void Execute_Always_DeleteEmpCorrectly()
     {
-        const string empId = "4";
+        const string empId = "1";
         new AddEmpService().Execute(new AddEmpOptions
         {
             EmpId = empId,

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using FluentAssertions;
 using JetBrains.Annotations;
@@ -14,6 +15,7 @@ using Xunit;
 namespace SalaryPayingSystem.IntegrationTest.Options.AddEmp;
 
 [TestSubject(typeof(AddEmpService))]
+[Collection("Sequential")]
 public class AddEmpServiceTest
 {
     public AddEmpServiceTest()
