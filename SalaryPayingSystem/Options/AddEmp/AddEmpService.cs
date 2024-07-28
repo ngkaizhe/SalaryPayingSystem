@@ -1,6 +1,7 @@
 ﻿using SalaryPayingSystem.AddEmp;
 using SalaryPayingSystem.Employees;
-using SalaryPayingSystem.Options.AddEmp.Transactions;
+using SalaryPayingSystem.Transactions;
+using SalaryPayingSystem.Transactions.AddEmp;
 
 namespace SalaryPayingSystem.Options.AddEmp;
 

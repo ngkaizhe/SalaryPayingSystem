@@ -4,7 +4,7 @@ using SalaryPayingSystem.PayClassifications;
 using SalaryPayingSystem.PaymentMethods;
 using SalaryPayingSystem.PaymentSchedules;
 
-namespace SalaryPayingSystem.Options.AddEmp.Transactions;
+namespace SalaryPayingSystem.Transactions.AddEmp;
 
 public abstract class AddEmployeeTransaction(string empId, string name, string address) : ITransaction
 {

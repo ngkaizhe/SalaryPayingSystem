@@ -1,7 +1,7 @@
 ﻿using SalaryPayingSystem.PayClassifications;
 using SalaryPayingSystem.PaymentSchedules;
 
-namespace SalaryPayingSystem.Options.AddEmp.Transactions;
+namespace SalaryPayingSystem.Transactions.AddEmp;
 
 class AddHourlyEmployee(string empId, string name, string address, double hourlyRate) : AddEmployeeTransaction(empId, name, address)
 {

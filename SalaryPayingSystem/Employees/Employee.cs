@@ -18,4 +18,6 @@ public class Employee(
     public IPayClassification PayClassification { get; } = payClassification;
     public IPaymentSchedule PaymentSchedule { get; } = paymentSchedule;
     public IPaymentMethod PaymentMethod { get; } = paymentMethod;
+    
+    public static readonly Employee Null = new NullEmployee();
 }

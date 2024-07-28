@@ -1,4 +1,4 @@
-﻿namespace SalaryPayingSystem.Options.AddEmp.Transactions;
+﻿namespace SalaryPayingSystem.Transactions;
 
 public interface ITransaction
 {

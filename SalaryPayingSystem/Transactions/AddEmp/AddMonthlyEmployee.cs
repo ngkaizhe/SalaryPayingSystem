@@ -1,7 +1,7 @@
 ﻿using SalaryPayingSystem.PayClassifications;
 using SalaryPayingSystem.PaymentSchedules;
 
-namespace SalaryPayingSystem.Options.AddEmp.Transactions;
+namespace SalaryPayingSystem.Transactions.AddEmp;
 
 class AddMonthlyEmployee(string empId, string name, string address, double monthlyPay) : AddEmployeeTransaction(empId, name, address)
 {

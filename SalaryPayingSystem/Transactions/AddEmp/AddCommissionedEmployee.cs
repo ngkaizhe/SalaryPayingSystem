@@ -1,7 +1,7 @@
 ﻿using SalaryPayingSystem.PayClassifications;
 using SalaryPayingSystem.PaymentSchedules;
 
-namespace SalaryPayingSystem.Options.AddEmp.Transactions;
+namespace SalaryPayingSystem.Transactions.AddEmp;
 
 class AddCommissionedEmployee(string empId, string name, string address,  double salary, double commissionRate) : AddEmployeeTransaction(empId, name, address)
 {
