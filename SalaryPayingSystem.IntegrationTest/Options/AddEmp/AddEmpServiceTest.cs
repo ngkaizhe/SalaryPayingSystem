@@ -16,11 +16,14 @@ namespace SalaryPayingSystem.IntegrationTest.Options.AddEmp;
 [TestSubject(typeof(AddEmpService))]
 public class AddEmpServiceTest
 {
+    public AddEmpServiceTest()
+    {
+        PayrollDatabase.Clear();
+    }
     
     [Fact]
     public void Execute_AddHourlyEmployee_DatabaseHaveEmployee()
     {
-        PayrollDatabase.Clear();
         const string empId = "1";
         const string name = "John";
         const int salary = 1000;
@@ -54,7 +57,6 @@ public class AddEmpServiceTest
     [Fact]
     public void Execute_AddMonthlyEmployee_DatabaseHaveEmployee()
     {
-        PayrollDatabase.Clear();
         const string empId = "1";
         const string name = "John";
         const int salary = 1000;
@@ -88,7 +90,6 @@ public class AddEmpServiceTest
     [Fact]
     public void Execute_AddCommissionedEmployee_DatabaseHaveEmployee()
     {
-        PayrollDatabase.Clear();
         const string empId = "1";
         const string name = "John";
         const int salary = 1000;
