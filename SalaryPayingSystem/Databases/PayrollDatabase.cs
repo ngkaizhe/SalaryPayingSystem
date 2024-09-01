@@ -4,7 +4,7 @@ namespace SalaryPayingSystem.Databases;
 
 public abstract class PayrollDatabase
 {
-    private static readonly Dictionary<string, Employee> Employees = new Dictionary<string, Employee>();
+    private static readonly Dictionary<string, Employee> Employees = new ();
 
     public static void AddEmployee(string empId, Employee employee)
     {

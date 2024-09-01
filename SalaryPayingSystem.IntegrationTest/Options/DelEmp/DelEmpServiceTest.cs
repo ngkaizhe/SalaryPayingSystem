@@ -31,9 +31,8 @@ public class DelEmpServiceTest
             EmployeeType = EmployeeType.H,
             Params = new[] { "1000" }
         });
-        var service = new DelEmpService();
         
-        service.Execute(new DelEmpOptions { EmpId = empId });
+        new DelEmpService().Execute(new DelEmpOptions { EmpId = empId });
         
         var employee = PayrollDatabase.GetEmployee(empId);
         employee.Should().BeNull();

@@ -42,6 +42,7 @@ public class AddEmpServiceTest
         service.Execute(options);
         
         var employee = PayrollDatabase.GetEmployee(empId);
+        employee.Should().NotBeNull();
         employee.Name.Should().Be(name);
 
         var classification = employee.PayClassification;
@@ -75,6 +76,7 @@ public class AddEmpServiceTest
         service.Execute(options);
         
         var employee = PayrollDatabase.GetEmployee(empId);
+        employee.Should().NotBeNull();
         employee.Name.Should().Be(name);
 
         var classification = employee.PayClassification;
@@ -109,6 +111,7 @@ public class AddEmpServiceTest
         service.Execute(options);
         
         var employee = PayrollDatabase.GetEmployee(empId);
+        employee.Should().NotBeNull();
         employee.Name.Should().Be(name);
 
         var classification = employee.PayClassification;

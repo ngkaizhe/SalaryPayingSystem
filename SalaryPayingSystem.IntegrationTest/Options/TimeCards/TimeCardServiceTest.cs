@@ -33,11 +33,10 @@ public class TimeCardServiceTest
             EmployeeType = EmployeeType.H,
             Params = new List<string> { "1000" }
         });
-        var service = new TimeCardService();
 
         var dateTime = new DateTime(2021, 1, 1);
         const int hour = 8;
-        service.Execute(new TimeCardOptions
+        new TimeCardService().Execute(new TimeCardOptions
         {
             EmpId = empId,
             Date = dateTime,
