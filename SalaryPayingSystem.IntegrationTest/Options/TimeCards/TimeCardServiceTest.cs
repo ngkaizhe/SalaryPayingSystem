@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using FluentAssertions;
 using JetBrains.Annotations;
-using SalaryPayingSystem.AddEmp;
 using SalaryPayingSystem.Databases;
-using SalaryPayingSystem.Employees;
-using SalaryPayingSystem.Options.AddEmp;
 using SalaryPayingSystem.Options.TimeCards;
 using SalaryPayingSystem.PayClassifications;
+using SalaryPayingSystem.Transactions.AddEmp;
 using Xunit;
 
 namespace SalaryPayingSystem.IntegrationTest.Options.TimeCards;
@@ -25,14 +22,7 @@ public class TimeCardServiceTest
     public void Execute_Always_AddTimeCardToClassification()
     {
         const string empId = "1";
-        new AddEmpService().Execute(new AddEmpOptions
-        {
-            EmpId = empId,
-            Name = "Name",
-            Address = "1234",
-            EmployeeType = EmployeeType.H,
-            Params = new List<string> { "1000" }
-        });
+        new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();
 
         var dateTime = new DateTime(2021, 1, 1);
         const int hour = 8;

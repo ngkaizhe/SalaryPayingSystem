@@ -9,6 +9,7 @@ using SalaryPayingSystem.Options.AddEmp;
 using SalaryPayingSystem.Options.SalesReceipts;
 using SalaryPayingSystem.Options.TimeCards;
 using SalaryPayingSystem.PayClassifications;
+using SalaryPayingSystem.Transactions.AddEmp;
 using Xunit;
 
 namespace SalaryPayingSystem.IntegrationTest.Options.SalesReceipts;
@@ -26,14 +27,7 @@ public class SalesReceiptsServiceTest
     public void Execute_Always_AddSalesReceiptsToClassification()
     {
         const string empId = "1";
-        new AddEmpService().Execute(new AddEmpOptions
-        {
-            EmpId = empId,
-            Name = "Name",
-            Address = "1234",
-            EmployeeType = EmployeeType.C,
-            Params = new List<string> { "1000", "1.5" }
-        });
+        new AddCommissionedEmployee(empId, "John", "1234", 1000, 1.5).Execute();;
 
         var dateTime = new DateTime(2021, 1, 1);
         var amount = 1000.0;

@@ -3,7 +3,7 @@ using SalaryPayingSystem.PaymentSchedules;
 
 namespace SalaryPayingSystem.Transactions.AddEmp;
 
-class AddCommissionedEmployee(string empId, string name, string address,  double salary, double commissionRate) : AddEmployeeTransaction(empId, name, address)
+public class AddCommissionedEmployee(string empId, string name, string address,  double salary, double commissionRate) : AddEmployeeTransaction(empId, name, address)
 {
     protected override IPayClassification MakePayClassification()
     {
