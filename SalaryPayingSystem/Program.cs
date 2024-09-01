@@ -4,9 +4,9 @@ using SalaryPayingSystem.AddEmp;
 using SalaryPayingSystem.ChgEmp;
 using SalaryPayingSystem.Options.AddEmp;
 using SalaryPayingSystem.Options.DelEmp;
+using SalaryPayingSystem.Options.SalesReceipts;
 using SalaryPayingSystem.Options.TimeCards;
 using SalaryPayingSystem.Payday;
-using SalaryPayingSystem.SalesReceipt;
 using SalaryPayingSystem.ServiceCharge;
 
 

@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace SalaryPayingSystem.SalesReceipt;
+namespace SalaryPayingSystem.Options.SalesReceipts;
 
 [Verb("SalesReceipt", HelpText = "Register for sales receipt")]
 public class SalesReceiptOptions
@@ -9,8 +9,8 @@ public class SalesReceiptOptions
     public string EmpId { get; set; }
     
     [Value(1, MetaName = "date", Required = true, HelpText = "Date")]
-    public string Date { get; set; }
+    public DateTime Date { get; set; }
     
     [Value(2, MetaName = "amount", Required = true, HelpText = "Amount")]
-    public string Amount { get; set; }
+    public double Amount { get; set; }
 }
