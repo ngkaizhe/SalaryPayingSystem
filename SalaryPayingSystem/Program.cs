@@ -5,9 +5,9 @@ using SalaryPayingSystem.ChgEmp;
 using SalaryPayingSystem.Options.AddEmp;
 using SalaryPayingSystem.Options.DelEmp;
 using SalaryPayingSystem.Options.SalesReceipts;
+using SalaryPayingSystem.Options.ServiceCharges;
 using SalaryPayingSystem.Options.TimeCards;
 using SalaryPayingSystem.Payday;
-using SalaryPayingSystem.ServiceCharge;
 
 
 var addEmpService = new AddEmpService();

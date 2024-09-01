@@ -37,7 +37,7 @@ SalesReceipt <EmpId> <date> <amount>
 
 ### Case 5: 登記工會服務費
 ``` bash
-ServiceCharge <memberId> <amount>
+ServiceCharge <memberId> <date> <amount>
 ```
 
 ### Case 6: 更改員工明細
