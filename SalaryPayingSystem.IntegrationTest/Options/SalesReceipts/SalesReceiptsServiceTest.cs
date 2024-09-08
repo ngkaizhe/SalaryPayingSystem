@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using FluentAssertions;
 using JetBrains.Annotations;
-using SalaryPayingSystem.AddEmp;
 using SalaryPayingSystem.Databases;
 using SalaryPayingSystem.Employees;
 using SalaryPayingSystem.Options.AddEmp;

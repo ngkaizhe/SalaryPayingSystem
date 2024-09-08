@@ -1,7 +1,7 @@
 ﻿using CommandLine;
 using SalaryPayingSystem.Employees;
 
-namespace SalaryPayingSystem.AddEmp;
+namespace SalaryPayingSystem.Options.AddEmp;
 
 [Verb("AddEmp", HelpText = "Add a new employee")]
 public class AddEmpOptions

@@ -1,5 +1,4 @@
-﻿using SalaryPayingSystem.AddEmp;
-using SalaryPayingSystem.Employees;
+﻿using SalaryPayingSystem.Employees;
 using SalaryPayingSystem.Transactions;
 using SalaryPayingSystem.Transactions.AddEmp;
 

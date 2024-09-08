@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace SalaryPayingSystem.ChgEmp;
+namespace SalaryPayingSystem.Options.ChgEmp;
 
 [Verb("ChgEmp", HelpText = "Register for guild service fee")]
 public class ChgEmpOptions

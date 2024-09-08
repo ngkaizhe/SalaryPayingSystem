@@ -14,8 +14,8 @@ public class Employee(
     IPaymentMethod paymentMethod)
 {
     private string _empId = empId;
-    public string Name { get; } = name;
-    private string _address = address;
+    public string Name { get; set; } = name;
+    public string Address { get; set; } = address;
     public IAffiliation? Affiliation { get; set; }
     
     public IPayClassification PayClassification { get; } = payClassification;

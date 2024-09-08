@@ -1,8 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using CommandLine;
-using SalaryPayingSystem.AddEmp;
-using SalaryPayingSystem.ChgEmp;
 using SalaryPayingSystem.Options.AddEmp;
+using SalaryPayingSystem.Options.ChgEmp;
 using SalaryPayingSystem.Options.DelEmp;
 using SalaryPayingSystem.Options.SalesReceipts;
 using SalaryPayingSystem.Options.ServiceCharges;
