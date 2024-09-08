@@ -15,13 +15,13 @@ public class ChgEmpOptions
     public string Address { get; set; }
 
     [Option("Hourly", HelpText = "Hourly rate for the employee")]
-    public decimal? HourlyRate { get; set; }
+    public double? Hourly { get; set; }
 
     [Option("Salaried", HelpText = "Monthly salary for the employee")]
-    public decimal? MonthlySalary { get; set; }
+    public double? Monthly { get; set; }
 
     [Option("Commissioned", HelpText = "Monthly salary and commission rate for commissioned employee")]
-    public string Commissioned { get; set; }
+    public IEnumerable<string> Commissioned { get; set; }
 
     [Option("Hold", HelpText = "Set payment method to hold")]
     public bool Hold { get; set; }

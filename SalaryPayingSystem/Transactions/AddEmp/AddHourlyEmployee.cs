@@ -3,11 +3,11 @@ using SalaryPayingSystem.PaymentSchedules;
 
 namespace SalaryPayingSystem.Transactions.AddEmp;
 
-public class AddHourlyEmployee(string empId, string name, string address, double hourlyRate) : AddEmployeeTransaction(empId, name, address)
+public class AddHourlyEmployee(string empId, string name, string address, double hourlyPay) : AddEmployeeTransaction(empId, name, address)
 {
     protected override IPayClassification MakePayClassification()
     {
-        return new HourlyClassification(hourlyRate);
+        return new HourlyClassification(hourlyPay);
     }
 
     protected override IPaymentSchedule MakePaySchedule()

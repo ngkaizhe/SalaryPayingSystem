@@ -47,7 +47,7 @@ public class AddEmpServiceTest
         var classification = employee.PayClassification;
         classification.Should().BeOfType<HourlyClassification>();
         var hourlyClassification = (HourlyClassification) classification;
-        hourlyClassification.HourlyRate.Should().Be(salary);
+        hourlyClassification.HourlyPay.Should().Be(salary);
 
         var schedule = employee.PaymentSchedule;
         schedule.Should().BeOfType<WeeklySchedule>();

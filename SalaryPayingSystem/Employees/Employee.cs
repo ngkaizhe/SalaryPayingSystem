@@ -18,7 +18,7 @@ public class Employee(
     public string Address { get; set; } = address;
     public IAffiliation? Affiliation { get; set; }
     
-    public IPayClassification PayClassification { get; } = payClassification;
-    public IPaymentSchedule PaymentSchedule { get; } = paymentSchedule;
+    public IPayClassification PayClassification { get; set; } = payClassification;
+    public IPaymentSchedule PaymentSchedule { get; set; } = paymentSchedule;
     public IPaymentMethod PaymentMethod { get; } = paymentMethod;
 }

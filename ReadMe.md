@@ -45,7 +45,7 @@ ServiceCharge <memberId> <date> <amount>
 ChgEmp <EmpId> -Name <name>
 ChgEmp <EmpId> -Address <address>
 ChgEmp <EmpId> -Hourly <hourly>
-ChgEmp <EmpId> -Salaried <salary>
+ChgEmp <EmpId> -Monthly <salary>
 ChgEmp <EmpId> -Commissioned <salary> <rate>
 ChgEmp <EmpId> -Hold
 ChgEmp <EmpId> -Direct <bank> <account>

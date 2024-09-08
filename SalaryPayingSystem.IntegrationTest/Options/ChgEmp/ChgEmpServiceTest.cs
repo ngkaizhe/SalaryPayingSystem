@@ -2,6 +2,8 @@
 using JetBrains.Annotations;
 using SalaryPayingSystem.Databases;
 using SalaryPayingSystem.Options.ChgEmp;
+using SalaryPayingSystem.PayClassifications;
+using SalaryPayingSystem.PaymentSchedules;
 using SalaryPayingSystem.Transactions.AddEmp;
 using Xunit;
 
@@ -40,5 +42,65 @@ public class ChgEmpServiceTest
         
         var employee = PayrollDatabase.GetEmployee(empId);
         employee.Address.Should().Be(newAddress);
+    }
+    
+    [Fact]
+    public void ChangeHourly_Always_ChangeEmployeeToHourly()
+    {
+        const string empId = "1";
+        new AddMonthlyEmployee(empId, "John", "1234", 1000).Execute();
+
+        var newHourlyPay = 2000;
+        new ChgEmpService().Execute(new ChgEmpOptions { EmpId = empId, Hourly = newHourlyPay});
+        
+        var employee = PayrollDatabase.GetEmployee(empId);
+        employee.PayClassification.Should().BeOfType<HourlyClassification>();
+        var hourlyClassification = (HourlyClassification) employee.PayClassification;
+        hourlyClassification.HourlyPay.Should().Be(newHourlyPay);
+
+        var schedule = employee.PaymentSchedule;
+        schedule.Should().BeOfType<WeeklySchedule>();
+    }
+    
+    [Fact]
+    public void ChangeMonthly_Always_ChangeEmployeeToMonthly()
+    {
+        const string empId = "1";
+        new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();
+
+        var newMonthlyPay = 2000;
+        new ChgEmpService().Execute(new ChgEmpOptions { EmpId = empId, Monthly = newMonthlyPay});
+        
+        var employee = PayrollDatabase.GetEmployee(empId);
+        employee.PayClassification.Should().BeOfType<MonthlyClassification>();
+        var monthlyClassification = (MonthlyClassification) employee.PayClassification;
+        monthlyClassification.Salary.Should().Be(newMonthlyPay);
+
+        var schedule = employee.PaymentSchedule;
+        schedule.Should().BeOfType<MonthlySchedule>();
+    }
+    
+    [Fact]
+    public void ChangeCommissioned_Always_ChangeEmployeeToCommissioned()
+    {
+        const string empId = "1";
+        new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();
+
+        var newMonthlyPay = 2000;
+        var newCommissionedRate = 1.05;
+        new ChgEmpService().Execute(new ChgEmpOptions
+        {
+            EmpId = empId, 
+            Commissioned = new[]{ $"{newMonthlyPay}", $"{newCommissionedRate}" }
+        });
+        
+        var employee = PayrollDatabase.GetEmployee(empId);
+        employee.PayClassification.Should().BeOfType<CommissionedClassification>();
+        var commissionedClassification = (CommissionedClassification) employee.PayClassification;
+        commissionedClassification.Salary.Should().Be(newMonthlyPay);
+        commissionedClassification.CommissionRate.Should().Be(newCommissionedRate);
+
+        var schedule = employee.PaymentSchedule;
+        schedule.Should().BeOfType<BiweeklySchedule>();
     }
 }

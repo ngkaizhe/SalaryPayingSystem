@@ -2,9 +2,9 @@
 
 namespace SalaryPayingSystem.PayClassifications;
 
-public class HourlyClassification(double hourlyRate) : IPayClassification
+public class HourlyClassification(double hourlyPay) : IPayClassification
 {
-    public double HourlyRate { get; } = hourlyRate;
+    public double HourlyPay { get; } = hourlyPay;
     private readonly List<TimeCard> _timeCards = [];
 
     public double CalculatePay()
