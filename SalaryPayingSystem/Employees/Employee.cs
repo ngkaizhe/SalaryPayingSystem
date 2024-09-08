@@ -16,7 +16,7 @@ public class Employee(
     private string _empId = empId;
     public string Name { get; } = name;
     private string _address = address;
-    public IAffiliation? Affiliation { get; set; } = null;
+    public IAffiliation? Affiliation { get; set; }
     
     public IPayClassification PayClassification { get; } = payClassification;
     public IPaymentSchedule PaymentSchedule { get; } = paymentSchedule;
