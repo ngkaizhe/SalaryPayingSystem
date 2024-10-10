@@ -6,4 +6,14 @@ public class WeeklySchedule : IPaymentSchedule
     {
         return date.DayOfWeek == DayOfWeek.Friday;
     }
+
+    public DateTime GetPayPeriodStartDate(DateTime date)
+    {
+        return date.AddDays(-5);
+    }
+
+    public DateTime GetPayPeriodEndDate(DateTime date)
+    {
+        return date;
+    }
 }

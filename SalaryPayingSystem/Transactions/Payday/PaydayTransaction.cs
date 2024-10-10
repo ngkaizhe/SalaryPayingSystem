@@ -14,7 +14,9 @@ public class PaydayTransaction(DateTime payDate) : ITransaction
             var employee = PayrollDatabase.GetEmployee(id);
             if (employee.IsPayDate(payDate))
             {
-                var payCheck = new PayCheck(payDate);
+                var startDate = employee.GetPayPeriodStartDate(payDate);
+                var endDate = employee.GetPayPeriodEndDate(payDate);
+                var payCheck = new PayCheck(startDate, endDate);
                 _payChecks[id] = payCheck;
                 employee.Payday(payCheck);
             }

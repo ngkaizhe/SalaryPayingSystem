@@ -13,7 +13,7 @@ public class HourlyClassification(double hourlyPay) : IPayClassification
         var totalPay = 0.0;
         foreach (var timeCard in _timeCards)
         {
-            if (IsInPayPeriod(timeCard.Date, payCheck.PayDay))
+            if (IsInPayPeriod(timeCard.Date, payCheck.PayPeriodStartDate, payCheck.PayPeriodEndDate))
             {
                 totalPay += CalculatePayForTimeCard(timeCard);
             }
@@ -21,12 +21,10 @@ public class HourlyClassification(double hourlyPay) : IPayClassification
 
         return totalPay;
     }
-    
-    private bool IsInPayPeriod(DateTime timeCardDate, DateTime payCheckPayDay)
+
+    private bool IsInPayPeriod(DateTime payDateTime, DateTime startDateTime, DateTime endDateTime)
     {
-        var payPeriodEndDate = payCheckPayDay.Date;
-        var payPeriodStartDate = payCheckPayDay.Date.AddDays(-5);
-        return timeCardDate >= payPeriodStartDate && timeCardDate <= payPeriodEndDate;
+        return payDateTime >= startDateTime && payDateTime <= endDateTime;
     }
 
     private double CalculatePayForTimeCard(TimeCard timeCard)

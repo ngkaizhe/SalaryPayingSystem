@@ -6,6 +6,16 @@ public class MonthlySchedule : IPaymentSchedule
     {
         return IsLastDayOfMonth(date);
     }
+    
+    public DateTime GetPayPeriodStartDate(DateTime date)
+    {
+        return date.AddMonths(-1).AddDays(1);
+    }
+
+    public DateTime GetPayPeriodEndDate(DateTime date)
+    {
+        return date;
+    }
 
     private bool IsLastDayOfMonth(DateTime date)
     {

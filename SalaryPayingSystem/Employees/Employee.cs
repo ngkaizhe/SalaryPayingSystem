@@ -38,4 +38,14 @@ public class Employee(
     {
         return PaymentSchedule.IsPayDate(payDate);
     }
+
+    public DateTime GetPayPeriodStartDate(DateTime payDate)
+    {
+        return PaymentSchedule.GetPayPeriodStartDate(payDate);
+    }
+    
+    public DateTime GetPayPeriodEndDate(DateTime payDate)
+    {
+        return PaymentSchedule.GetPayPeriodEndDate(payDate);
+    }
 }

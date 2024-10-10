@@ -1,4 +1,5 @@
-﻿using SalaryPayingSystem.Employees;
+﻿using System.Runtime.InteropServices.JavaScript;
+using SalaryPayingSystem.Employees;
 using SalaryPayingSystem.Options.ServiceCharges;
 
 namespace SalaryPayingSystem.Affiliations;
@@ -22,6 +23,20 @@ public class UnionAffiliation(int memberId, double dues) : IAffiliation
 
     public double CalculateDeductions(PayCheck payCheck)
     {
-        throw new NotImplementedException();
+        var totalFridays = NumberOfFridaysInPayPeriod(payCheck.PayPeriodStartDate, payCheck.PayPeriodEndDate);
+        return dues * totalFridays;
+    }
+
+    private int NumberOfFridaysInPayPeriod(DateTime startDate, DateTime endDate)
+    {
+        var totalFridays = 0;
+        for(var day = startDate; day <= endDate; day = day.AddDays(1))
+        {
+            if (day.DayOfWeek == DayOfWeek.Friday)
+            {
+                totalFridays += 1;
+            }
+        }
+        return totalFridays;
     }
 }

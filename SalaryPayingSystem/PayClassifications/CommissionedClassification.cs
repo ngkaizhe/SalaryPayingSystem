@@ -23,19 +23,17 @@ public class CommissionedClassification(double commissionRate, double salary) : 
     {
         var totalPay = 0.0;
         // for monthly pay
-        if (IsLastDayOfMonth(payCheck.PayDay))
+        if (IsLastDayOfMonth(payCheck.PayPeriodEndDate))
         {
             totalPay += salary;
         }
 
         // for sales receipt
-        if (payCheck.PayDay.DayOfWeek == DayOfWeek.Friday)
+        if (payCheck.PayPeriodEndDate.DayOfWeek == DayOfWeek.Friday)
         {
             foreach (var salesReceipt in _salesReceipts)
             {
-                var previousWeekStart = payCheck.PayDay.AddDays(-7-5);
-                var previousWeekEnd = payCheck.PayDay.AddDays(-7);
-                if(salesReceipt.Date >= previousWeekStart && salesReceipt.Date <= previousWeekEnd)
+                if(SalesReceiptIsInPayPeriod(salesReceipt.Date, payCheck.PayPeriodEndDate.AddDays(-7-5), payCheck.PayPeriodEndDate.AddDays(-7)))
                 {
                     totalPay += salesReceipt.Amount * commissionRate;
                 }
@@ -44,7 +42,13 @@ public class CommissionedClassification(double commissionRate, double salary) : 
 
         return totalPay;
     }
-    
+
+    private bool SalesReceiptIsInPayPeriod(DateTime payDateTime, DateTime startDateTime, DateTime endDateTime)
+    {
+        return payDateTime >= startDateTime && payDateTime <= endDateTime;
+    }
+
+
     private bool IsLastDayOfMonth(DateTime date)
     {
         return date.AddDays(1).Month != date.Month;

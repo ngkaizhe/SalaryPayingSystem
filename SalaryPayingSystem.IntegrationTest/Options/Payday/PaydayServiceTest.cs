@@ -4,8 +4,10 @@ using JetBrains.Annotations;
 using SalaryPayingSystem.Databases;
 using SalaryPayingSystem.Options.Payday;
 using SalaryPayingSystem.Options.SalesReceipts;
+using SalaryPayingSystem.Options.ServiceCharges;
 using SalaryPayingSystem.Options.TimeCards;
 using SalaryPayingSystem.Transactions.AddEmp;
+using SalaryPayingSystem.Transactions.ChgEmp;
 using SalaryPayingSystem.Transactions.Payday;
 using Xunit;
 
@@ -58,7 +60,7 @@ public class PaydayServiceTest
         });
 
         var payCheck = paydayService.GetPayCheck(empId);
-        payCheck.PayDay.Should().Be(payDate);
+        payCheck.PayPeriodEndDate.Should().Be(payDate);
         payCheck.GrossPay.Should().Be(monthlySalary);
         payCheck.Deductions.Should().Be(0);
         payCheck.NetPay.Should().Be(monthlySalary);
@@ -336,9 +338,36 @@ public class PaydayServiceTest
     private static void ValidatePayCheck(PaydayService paydayService, string empId, DateTime payDate, double pay)
     {
         var payCheck = paydayService.GetPayCheck(empId);
-        payCheck.PayDay.Should().Be(payDate);
+        payCheck.PayPeriodEndDate.Should().Be(payDate);
         payCheck.GrossPay.Should().Be(pay);
         payCheck.Deductions.Should().Be(0);
         payCheck.NetPay.Should().Be(pay);
     }
+    
+    [Fact]
+    public void PayMonthlyEmployee_WithServiceCharge_PayCheckHasCorrectNetPay()
+    {
+        const string empId = "1";
+        const string name = "John";
+        const string address = "address1";
+        const double monthlyPay = 1000.10;
+        new AddMonthlyEmployee(empId, name , address, monthlyPay).Execute();
+        const int memberId = 777;
+        const double duesRate = 9.42;
+        new ChangeMemberTransaction(empId, memberId, duesRate).Execute();
+
+        var lastDay = new DateTime(2001, 11, 30);
+        var paydayService = new PaydayService();
+        paydayService.Execute(new PaydayOptions()
+        {
+            Date = lastDay
+        });
+
+        var payCheck = paydayService.GetPayCheck(empId);
+        payCheck.PayPeriodEndDate.Should().Be(lastDay);
+        payCheck.GrossPay.Should().Be(monthlyPay);
+        payCheck.Deductions.Should().Be(duesRate * 5);
+        payCheck.NetPay.Should().Be(monthlyPay - duesRate * 5);
+    }
+    
 }
