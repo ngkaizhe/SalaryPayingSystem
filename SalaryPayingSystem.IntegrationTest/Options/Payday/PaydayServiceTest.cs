@@ -346,7 +346,7 @@ public class PaydayServiceTest
     }
     
     [Fact]
-    public void PayMonthlyEmployee_WithServiceCharge_PayCheckHasCorrectNetPay()
+    public void PayMonthlyEmployee_WithUnionAffiliation_PayCheckHasCorrectNetPay()
     {
         const string empId = "1";
         const string name = "John";
@@ -443,5 +443,48 @@ public class PaydayServiceTest
         payCheck.GrossPay.Should().Be(hourlyPay * totalWorkingHour);
         payCheck.Deductions.Should().Be(duesRate + serviceChargeAmount1);
         payCheck.NetPay.Should().Be((hourlyPay * totalWorkingHour) - (duesRate + serviceChargeAmount1));
+    }
+    
+    [Fact]
+    public void PayCommissionedEmployee_SalesReceiptSpanningMultiplePayPeriods_PayCheckHasCorrectNetPay()
+    {
+        const string empId = "1";
+        const string name = "John";
+        const string address = "address1";
+        const double monthlyPay = 1000.10;
+        const double commissionRate = 0.1;
+        new AddCommissionedEmployee(empId, name , address, monthlyPay, commissionRate).Execute();
+        const int memberId = 777;
+        const double duesRate = 9.42;
+        new ChangeMemberTransaction(empId, memberId, duesRate).Execute();
+
+        var payDate = new DateTime(2001, 11, 9);
+        const int salesReceiptAmount1 = 100;
+        var previousWeek = payDate.AddDays(-7);
+        new SalesReceiptService().Execute(new SalesReceiptOptions()
+        {
+            EmpId = empId,
+            Date = previousWeek,
+            Amount = salesReceiptAmount1
+        });
+        new SalesReceiptService().Execute(new SalesReceiptOptions()
+        {
+            EmpId = empId,
+            Date = payDate,
+            Amount = 200
+        });
+        var serviceChargeAmount1 = 12;
+        new ServiceChargeTransaction(memberId, payDate, serviceChargeAmount1).Execute();
+        var paydayService = new PaydayService();
+        paydayService.Execute(new PaydayOptions()
+        {
+            Date = payDate
+        });
+
+        var payCheck = paydayService.GetPayCheck(empId);
+        payCheck.PayPeriodEndDate.Should().Be(payDate);
+        payCheck.GrossPay.Should().Be(salesReceiptAmount1 * commissionRate);
+        payCheck.Deductions.Should().Be(duesRate + serviceChargeAmount1);
+        payCheck.NetPay.Should().Be((salesReceiptAmount1 * commissionRate) - (duesRate + serviceChargeAmount1));
     }
 }
