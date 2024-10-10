@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using FluentAssertions;
 using JetBrains.Annotations;
 using SalaryPayingSystem.Databases;
-using SalaryPayingSystem.Employees;
-using SalaryPayingSystem.Options.AddEmp;
 using SalaryPayingSystem.Options.SalesReceipts;
-using SalaryPayingSystem.Options.TimeCards;
 using SalaryPayingSystem.PayClassifications;
 using SalaryPayingSystem.Transactions.AddEmp;
 using Xunit;
