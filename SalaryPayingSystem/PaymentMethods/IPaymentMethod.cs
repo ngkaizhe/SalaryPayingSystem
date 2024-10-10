@@ -2,5 +2,5 @@
 
 public interface IPaymentMethod
 {
-    
+    void Pay(double netPay);
 }

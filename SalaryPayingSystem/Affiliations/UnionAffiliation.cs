@@ -1,4 +1,5 @@
-﻿using SalaryPayingSystem.Options.ServiceCharges;
+﻿using SalaryPayingSystem.Employees;
+using SalaryPayingSystem.Options.ServiceCharges;
 
 namespace SalaryPayingSystem.Affiliations;
 
@@ -17,5 +18,10 @@ public class UnionAffiliation(int memberId, double dues) : IAffiliation
     public ServiceCharge? GetServiceCharge(DateTime date)
     {
         return _serviceCharges.FirstOrDefault(sc => sc.Date == date);
+    }
+
+    public double CalculateDeductions(PayCheck payCheck)
+    {
+        throw new NotImplementedException();
     }
 }

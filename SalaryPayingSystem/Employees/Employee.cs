@@ -22,4 +22,20 @@ public class Employee(
     public IPayClassification PayClassification { get; set; } = payClassification;
     public IPaymentSchedule PaymentSchedule { get; set; } = paymentSchedule;
     public IPaymentMethod PaymentMethod { get; set; } = paymentMethod;
+    
+    public void Payday(PayCheck payCheck)
+    {
+        var grossPay = PayClassification.CalculatePay(payCheck);
+        var deductions = Affiliation?.CalculateDeductions(payCheck) ?? 0;
+        var netPay = grossPay - deductions;
+        payCheck.GrossPay = grossPay;
+        payCheck.Deductions = deductions;
+        payCheck.NetPay = netPay;
+        PaymentMethod.Pay(netPay);
+    }
+
+    public bool IsPayDate(DateTime payDate)
+    {
+        return PaymentSchedule.IsPayDate(payDate);
+    }
 }

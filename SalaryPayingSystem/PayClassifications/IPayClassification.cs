@@ -1,6 +1,8 @@
-﻿namespace SalaryPayingSystem.PayClassifications;
+﻿using SalaryPayingSystem.Employees;
+
+namespace SalaryPayingSystem.PayClassifications;
 
 public interface IPayClassification
 {
-    public double CalculatePay();
+    public double CalculatePay(PayCheck payCheck);
 }

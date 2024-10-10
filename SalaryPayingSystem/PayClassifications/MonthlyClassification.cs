@@ -1,11 +1,13 @@
-﻿namespace SalaryPayingSystem.PayClassifications;
+﻿using SalaryPayingSystem.Employees;
+
+namespace SalaryPayingSystem.PayClassifications;
 
 public class MonthlyClassification(double salary) : IPayClassification
 {
     public double Salary { get; } = salary;
 
-    public double CalculatePay()
+    public double CalculatePay(PayCheck payCheck)
     {
-        throw new NotImplementedException();
+        return Salary;
     }
 }

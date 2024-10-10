@@ -2,5 +2,5 @@
 
 public interface IPaymentSchedule
 {
-    
+    bool IsPayDate(DateTime date);
 }

@@ -3,10 +3,10 @@ using CommandLine;
 using SalaryPayingSystem.Options.AddEmp;
 using SalaryPayingSystem.Options.ChgEmp;
 using SalaryPayingSystem.Options.DelEmp;
+using SalaryPayingSystem.Options.Payday;
 using SalaryPayingSystem.Options.SalesReceipts;
 using SalaryPayingSystem.Options.ServiceCharges;
 using SalaryPayingSystem.Options.TimeCards;
-using SalaryPayingSystem.Payday;
 
 
 var addEmpService = new AddEmpService();
