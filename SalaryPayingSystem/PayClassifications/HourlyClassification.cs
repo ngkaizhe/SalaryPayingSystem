@@ -1,5 +1,6 @@
 ﻿using SalaryPayingSystem.Employees;
 using SalaryPayingSystem.Options.TimeCards;
+using SalaryPayingSystem.Utils;
 
 namespace SalaryPayingSystem.PayClassifications;
 
@@ -13,18 +14,13 @@ public class HourlyClassification(double hourlyPay) : IPayClassification
         var totalPay = 0.0;
         foreach (var timeCard in _timeCards)
         {
-            if (IsInPayPeriod(timeCard.Date, payCheck.PayPeriodStartDate, payCheck.PayPeriodEndDate))
+            if (timeCard.Date.IsInPayPeriod(payCheck.PayPeriodStartDate, payCheck.PayPeriodEndDate))
             {
                 totalPay += CalculatePayForTimeCard(timeCard);
             }
         }
 
         return totalPay;
-    }
-
-    private bool IsInPayPeriod(DateTime payDateTime, DateTime startDateTime, DateTime endDateTime)
-    {
-        return payDateTime >= startDateTime && payDateTime <= endDateTime;
     }
 
     private double CalculatePayForTimeCard(TimeCard timeCard)

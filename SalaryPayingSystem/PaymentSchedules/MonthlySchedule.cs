@@ -1,10 +1,12 @@
-﻿namespace SalaryPayingSystem.PaymentSchedules;
+﻿using SalaryPayingSystem.Utils;
+
+namespace SalaryPayingSystem.PaymentSchedules;
 
 public class MonthlySchedule : IPaymentSchedule
 {
     public bool IsPayDate(DateTime date)
     {
-        return IsLastDayOfMonth(date);
+        return date.IsLastDayOfMonth();
     }
     
     public DateTime GetPayPeriodStartDate(DateTime date)
@@ -15,10 +17,5 @@ public class MonthlySchedule : IPaymentSchedule
     public DateTime GetPayPeriodEndDate(DateTime date)
     {
         return date;
-    }
-
-    private bool IsLastDayOfMonth(DateTime date)
-    {
-        return date.AddDays(1).Month != date.Month;
     }
 }

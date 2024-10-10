@@ -1,5 +1,6 @@
 ﻿using SalaryPayingSystem.Employees;
 using SalaryPayingSystem.Options.SalesReceipts;
+using SalaryPayingSystem.Utils;
 
 namespace SalaryPayingSystem.PayClassifications;
 
@@ -23,9 +24,9 @@ public class CommissionedClassification(double commissionRate, double salary) : 
     {
         var totalPay = 0.0;
         // for monthly pay
-        if (IsLastDayOfMonth(payCheck.PayPeriodEndDate))
+        if (payCheck.PayPeriodEndDate.IsLastDayOfMonth())
         {
-            totalPay += salary;
+            totalPay += Salary;
         }
 
         // for sales receipt
@@ -33,24 +34,13 @@ public class CommissionedClassification(double commissionRate, double salary) : 
         {
             foreach (var salesReceipt in _salesReceipts)
             {
-                if(SalesReceiptIsInPayPeriod(salesReceipt.Date, payCheck.PayPeriodEndDate.AddDays(-7-5), payCheck.PayPeriodEndDate.AddDays(-7)))
+                if(salesReceipt.Date.IsInPayPeriod(payCheck.PayPeriodEndDate.AddDays(-7-5), payCheck.PayPeriodEndDate.AddDays(-7)))
                 {
-                    totalPay += salesReceipt.Amount * commissionRate;
+                    totalPay += salesReceipt.Amount * CommissionRate;
                 }
             }
         }
 
         return totalPay;
-    }
-
-    private bool SalesReceiptIsInPayPeriod(DateTime payDateTime, DateTime startDateTime, DateTime endDateTime)
-    {
-        return payDateTime >= startDateTime && payDateTime <= endDateTime;
-    }
-
-
-    private bool IsLastDayOfMonth(DateTime date)
-    {
-        return date.AddDays(1).Month != date.Month;
     }
 }
