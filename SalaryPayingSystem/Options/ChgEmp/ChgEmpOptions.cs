@@ -27,10 +27,10 @@ public class ChgEmpOptions
     public bool Hold { get; set; }
 
     [Option("Direct", HelpText = "Set payment method to direct deposit")]
-    public bool Direct { get; set; }
+    public IEnumerable<string> Direct { get; set; }
 
     [Option("Mail", HelpText = "Set payment method to mail")]
-    public bool Mail { get; set; }
+    public string Mail { get; set; }
 
     [Option("Member", HelpText = "Assign employee as union member")]
     public string MemberId { get; set; }

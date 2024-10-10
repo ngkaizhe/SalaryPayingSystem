@@ -22,11 +22,26 @@ public class ChgEmpService
         {
             new ChangeMonthlyTransaction(options.EmpId, options.Monthly.Value).Execute();
         }
-        else if (options.Commissioned.Any())
+        else if (options.Commissioned != null && options.Commissioned.Any())
         {
             var parameters = options.Commissioned.ToList();
             
-            new ChangeCommissionTransaction(options.EmpId, double.Parse(parameters[0]), double.Parse(parameters[1])).Execute();        }
+            new ChangeCommissionTransaction(options.EmpId, double.Parse(parameters[0]), double.Parse(parameters[1])).Execute();        
+        }
+        else if (options.Hold)
+        {
+            new ChangeHoldTransaction(options.EmpId).Execute();        
+        }
+        else if (options.Direct != null && options.Direct.Any())
+        {
+            var parameters = options.Direct.ToList();
+            
+            new ChangeDirectTransaction(options.EmpId, parameters[0], parameters[1]).Execute();        
+        }
+        else if (!string.IsNullOrEmpty(options.Mail))
+        {
+            new ChangeMailTransaction(options.EmpId, options.Mail).Execute();        
+        }
         else
         {
             return 1;

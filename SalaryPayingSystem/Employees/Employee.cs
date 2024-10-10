@@ -20,5 +20,5 @@ public class Employee(
     
     public IPayClassification PayClassification { get; set; } = payClassification;
     public IPaymentSchedule PaymentSchedule { get; set; } = paymentSchedule;
-    public IPaymentMethod PaymentMethod { get; } = paymentMethod;
+    public IPaymentMethod PaymentMethod { get; set; } = paymentMethod;
 }

@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using SalaryPayingSystem.Databases;
 using SalaryPayingSystem.Options.ChgEmp;
 using SalaryPayingSystem.PayClassifications;
+using SalaryPayingSystem.PaymentMethods;
 using SalaryPayingSystem.PaymentSchedules;
 using SalaryPayingSystem.Transactions.AddEmp;
 using Xunit;
@@ -102,5 +103,62 @@ public class ChgEmpServiceTest
 
         var schedule = employee.PaymentSchedule;
         schedule.Should().BeOfType<BiweeklySchedule>();
+    }
+    
+    [Fact]
+    public void ChangeToHoldMethod_Always_ChangeEmployeeToHoldMethod()
+    {
+        const string empId = "1";
+        new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();
+        var employee = PayrollDatabase.GetEmployee(empId);
+        employee.PaymentMethod = new DirectMethod("bank1", "account1");
+
+        new ChgEmpService().Execute(new ChgEmpOptions
+        {
+            EmpId = empId, 
+            Hold = true
+        });
+        
+        employee.PaymentMethod.Should().BeOfType<HoldMethod>();
+    }
+    
+    [Fact]
+    public void ChangeToDirectMethod_Always_ChangeEmployeeToDirectMethod()
+    {
+        const string empId = "1";
+        new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();
+
+        var bankName = "bank1";
+        var accountName = "account1";
+        new ChgEmpService().Execute(new ChgEmpOptions
+        {
+            EmpId = empId, 
+            Direct = new []{ bankName, accountName }
+        });
+        
+        var employee = PayrollDatabase.GetEmployee(empId);
+        employee.PaymentMethod.Should().BeOfType<DirectMethod>();
+        var method = employee.PaymentMethod as DirectMethod;
+        method.Bank.Should().Be(bankName);
+        method.Account.Should().Be(accountName);
+    }
+    
+    [Fact]
+    public void ChangeToMailMethod_Always_ChangeEmployeeToMailMethod()
+    {
+        const string empId = "1";
+        new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();
+
+        var address = "address1";
+        new ChgEmpService().Execute(new ChgEmpOptions
+        {
+            EmpId = empId, 
+            Mail = address
+        });
+        
+        var employee = PayrollDatabase.GetEmployee(empId);
+        employee.PaymentMethod.Should().BeOfType<MailMethod>();
+        var method = employee.PaymentMethod as MailMethod;
+        method.Address.Should().Be(address);
     }
 }
