@@ -1,6 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 using JetBrains.Annotations;
+using SalaryPayingSystem.Affiliations;
 using SalaryPayingSystem.Databases;
 using SalaryPayingSystem.Options.ServiceCharges;
 using SalaryPayingSystem.Transactions.AddEmp;
@@ -23,9 +24,9 @@ public class ServiceChargeServiceTest
         const string empId = "1";
         new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();
         var employee = PayrollDatabase.GetEmployee(empId);
-        var employeeAffiliation = new UnionAffiliation();
+        const int memberId = 123;
+        var employeeAffiliation = new UnionAffiliation(memberId, 100);
         employee.Affiliation = employeeAffiliation;
-        const string memberId = "1_1";
         PayrollDatabase.AddUnionMember(memberId, employee);
 
         var dateTime = new DateTime(2021,1,1);

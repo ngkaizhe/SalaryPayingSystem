@@ -42,6 +42,14 @@ public class ChgEmpService
         {
             new ChangeMailTransaction(options.EmpId, options.Mail).Execute();        
         }
+        else if (options is { Member: not null, Dues: not null })
+        {
+            new ChangeMemberTransaction(options.EmpId, options.Member.Value, options.Dues.Value).Execute();        
+        }
+        else if (options.NoMember)
+        {
+            new ChangeUnaffiliatedTransaction(options.EmpId).Execute();        
+        }
         else
         {
             return 1;

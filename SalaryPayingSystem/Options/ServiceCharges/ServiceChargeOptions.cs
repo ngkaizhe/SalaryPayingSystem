@@ -6,7 +6,7 @@ namespace SalaryPayingSystem.Options.ServiceCharges;
 public class ServiceChargeOptions
 {
     [Value(0, MetaName = "memberId", Required = true, HelpText = "Member ID")]
-    public string MemberId { get; set; }
+    public int MemberId { get; set; }
     
     [Value(1, MetaName = "date", Required = true, HelpText = "Date")]
     public DateTime Date { get; set; }

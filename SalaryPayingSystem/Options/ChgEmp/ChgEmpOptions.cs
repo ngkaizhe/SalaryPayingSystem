@@ -33,10 +33,10 @@ public class ChgEmpOptions
     public string Mail { get; set; }
 
     [Option("Member", HelpText = "Assign employee as union member")]
-    public string MemberId { get; set; }
+    public int? Member { get; set; }
 
     [Option("Dues", HelpText = "Union dues rate for the employee")]
-    public decimal? DuesRate { get; set; }
+    public double? Dues { get; set; }
 
     [Option("NoMember", HelpText = "Remove employee from union membership")]
     public bool NoMember { get; set; }

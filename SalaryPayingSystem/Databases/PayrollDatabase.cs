@@ -5,7 +5,7 @@ namespace SalaryPayingSystem.Databases;
 public abstract class PayrollDatabase
 {
     private static readonly Dictionary<string, Employee> Employees = new ();
-    private static readonly Dictionary<string, Employee> UnionMembers = new ();
+    private static readonly Dictionary<int, Employee> UnionMembers = new ();
     
     public static void AddEmployee(string empId, Employee employee)
     {
@@ -28,12 +28,12 @@ public abstract class PayrollDatabase
         return Employees.Keys.ToList();
     }
     
-    public static void AddUnionMember(string memberId, Employee employee)
+    public static void AddUnionMember(int memberId, Employee employee)
     {
         UnionMembers.Add(memberId, employee);
     }
     
-    public static Employee? GetUnionMember(string memberId)
+    public static Employee? GetUnionMember(int memberId)
     {
         UnionMembers.TryGetValue(memberId, out var employee);
         return employee;
@@ -43,5 +43,10 @@ public abstract class PayrollDatabase
     {
         Employees.Clear();
         UnionMembers.Clear();
+    }
+
+    public static void RemoveUnionMember(int memberId)
+    {
+        UnionMembers.Remove(memberId);
     }
 }

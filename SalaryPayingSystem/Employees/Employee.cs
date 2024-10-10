@@ -1,4 +1,5 @@
-﻿using SalaryPayingSystem.Options.ServiceCharges;
+﻿using SalaryPayingSystem.Affiliations;
+using SalaryPayingSystem.Options.ServiceCharges;
 using SalaryPayingSystem.PayClassifications;
 using SalaryPayingSystem.PaymentMethods;
 using SalaryPayingSystem.PaymentSchedules;

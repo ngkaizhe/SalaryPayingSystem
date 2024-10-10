@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using JetBrains.Annotations;
+using SalaryPayingSystem.Affiliations;
 using SalaryPayingSystem.Databases;
 using SalaryPayingSystem.Options.ChgEmp;
 using SalaryPayingSystem.PayClassifications;
@@ -160,5 +161,45 @@ public class ChgEmpServiceTest
         employee.PaymentMethod.Should().BeOfType<MailMethod>();
         var method = employee.PaymentMethod as MailMethod;
         method.Address.Should().Be(address);
+    }
+    
+    [Fact]
+    public void ChangeUnionMember_Always_ChangeEmployeeUnionMember()
+    {
+        const string empId = "1";
+        new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();
+        
+        const int memberId = 7743;
+        var dues = 100;
+        new ChgEmpService().Execute(new ChgEmpOptions
+        {
+            EmpId = empId, 
+            Member = memberId,
+            Dues = dues
+        });
+        
+        var employee = PayrollDatabase.GetEmployee(empId);
+        employee.Affiliation.Should().BeOfType<UnionAffiliation>();
+        var affiliation = employee.Affiliation as UnionAffiliation;
+        affiliation.MemberId.Should().Be(memberId);
+        affiliation.Dues.Should().Be(dues);
+    }
+    
+    [Fact]
+    public void ChangeNoMember_Always_ChangeEmployeeToNoMember()
+    {
+        const string empId = "1";
+        new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();
+        var employee = PayrollDatabase.GetEmployee(empId);
+        const int memberId = 7743;
+        PayrollDatabase.AddUnionMember(memberId, employee);
+        
+        new ChgEmpService().Execute(new ChgEmpOptions
+        {
+            EmpId = empId, 
+            NoMember = true
+        });
+        
+        employee.Affiliation.Should().BeOfType<NoAffiliation>();
     }
 }

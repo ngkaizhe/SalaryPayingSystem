@@ -1,12 +1,12 @@
-﻿namespace SalaryPayingSystem.Options.ServiceCharges;
+﻿using SalaryPayingSystem.Options.ServiceCharges;
 
+namespace SalaryPayingSystem.Affiliations;
 
-public interface IAffiliation
+public class UnionAffiliation(int memberId, double dues) : IAffiliation
 {
-}
-
-public class UnionAffiliation: IAffiliation
-{
+    public int MemberId { get; } = memberId;
+    public double Dues { get; } = dues;
+    
     private readonly List<ServiceCharge> _serviceCharges = new ();
     
     public void AddServiceCharge(ServiceCharge serviceCharge)

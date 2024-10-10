@@ -1,9 +1,10 @@
-﻿using SalaryPayingSystem.Databases;
+﻿using SalaryPayingSystem.Affiliations;
+using SalaryPayingSystem.Databases;
 using SalaryPayingSystem.Options.ServiceCharges;
 
 namespace SalaryPayingSystem.Transactions.ServiceCharges;
 
-public class ServiceChargeTransaction(string memberId, DateTime dateTime, double amount): ITransaction
+public class ServiceChargeTransaction(int memberId, DateTime dateTime, double amount): ITransaction
 {
     public void Execute()
     {
