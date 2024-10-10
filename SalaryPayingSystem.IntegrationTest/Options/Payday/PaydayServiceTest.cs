@@ -9,6 +9,7 @@ using SalaryPayingSystem.Options.TimeCards;
 using SalaryPayingSystem.Transactions.AddEmp;
 using SalaryPayingSystem.Transactions.ChgEmp;
 using SalaryPayingSystem.Transactions.Payday;
+using SalaryPayingSystem.Transactions.ServiceCharges;
 using Xunit;
 
 namespace SalaryPayingSystem.IntegrationTest.Options.Payday;
@@ -370,4 +371,77 @@ public class PaydayServiceTest
         payCheck.NetPay.Should().Be(monthlyPay - duesRate * 5);
     }
     
+    [Fact]
+    public void PayHourlyEmployee_WithServiceCharge_PayCheckHasCorrectNetPay()
+    {
+        const string empId = "1";
+        const string name = "John";
+        const string address = "address1";
+        const double hourlyPay = 100;
+        new AddHourlyEmployee(empId, name , address, hourlyPay).Execute();
+        const int memberId = 777;
+        const double duesRate = 9.42;
+        new ChangeMemberTransaction(empId, memberId, duesRate).Execute();
+
+        var payDate = new DateTime(2001, 11, 9);
+        var serviceChargeAmount1 = 12;
+        new ServiceChargeTransaction(memberId, payDate, serviceChargeAmount1).Execute();
+        var serviceChargeAmount2 = 11;
+        new ServiceChargeTransaction(memberId, payDate, serviceChargeAmount2).Execute();
+        var totalWorkingHour = 8;
+        new TimeCardService().Execute(new TimeCardOptions()
+        {
+            EmpId = empId,
+            Date = payDate,
+            Hour = totalWorkingHour
+        });
+        var paydayService = new PaydayService();
+        paydayService.Execute(new PaydayOptions()
+        {
+            Date = payDate
+        });
+
+        var payCheck = paydayService.GetPayCheck(empId);
+        payCheck.PayPeriodEndDate.Should().Be(payDate);
+        payCheck.GrossPay.Should().Be(hourlyPay * totalWorkingHour);
+        payCheck.Deductions.Should().Be(duesRate + serviceChargeAmount1 + serviceChargeAmount2);
+        payCheck.NetPay.Should().Be((hourlyPay * totalWorkingHour) - (duesRate + serviceChargeAmount1 + serviceChargeAmount2));
+    }
+    
+    [Fact]
+    public void PayHourlyEmployee_ServiceChargesSpanningMultiplePayPeriods_PayCheckHasCorrectNetPay()
+    {
+        const string empId = "1";
+        const string name = "John";
+        const string address = "address1";
+        const double hourlyPay = 100;
+        new AddHourlyEmployee(empId, name , address, hourlyPay).Execute();
+        const int memberId = 777;
+        const double duesRate = 9.42;
+        new ChangeMemberTransaction(empId, memberId, duesRate).Execute();
+
+        var payDate = new DateTime(2001, 11, 9);
+        var serviceChargeAmount1 = 12;
+        new ServiceChargeTransaction(memberId, payDate, serviceChargeAmount1).Execute();
+        var previousPayPeriodDateTime = payDate.AddDays(-7);
+        new ServiceChargeTransaction(memberId, previousPayPeriodDateTime, 11).Execute();
+        var totalWorkingHour = 8;
+        new TimeCardService().Execute(new TimeCardOptions()
+        {
+            EmpId = empId,
+            Date = payDate,
+            Hour = totalWorkingHour
+        });
+        var paydayService = new PaydayService();
+        paydayService.Execute(new PaydayOptions()
+        {
+            Date = payDate
+        });
+
+        var payCheck = paydayService.GetPayCheck(empId);
+        payCheck.PayPeriodEndDate.Should().Be(payDate);
+        payCheck.GrossPay.Should().Be(hourlyPay * totalWorkingHour);
+        payCheck.Deductions.Should().Be(duesRate + serviceChargeAmount1);
+        payCheck.NetPay.Should().Be((hourlyPay * totalWorkingHour) - (duesRate + serviceChargeAmount1));
+    }
 }

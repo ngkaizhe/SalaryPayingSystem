@@ -24,7 +24,17 @@ public class UnionAffiliation(int memberId, double dues) : IAffiliation
     public double CalculateDeductions(PayCheck payCheck)
     {
         var totalFridays = NumberOfFridaysInPayPeriod(payCheck.PayPeriodStartDate, payCheck.PayPeriodEndDate);
-        return dues * totalFridays;
+        var duesDeduction = dues * totalFridays;
+        
+        var totalServiceCharges = 0.0;
+        foreach (var serviceCharge in _serviceCharges)
+        {
+            if (serviceCharge.Date >= payCheck.PayPeriodStartDate && serviceCharge.Date <= payCheck.PayPeriodEndDate)
+            {
+                totalServiceCharges += serviceCharge.Amount;
+            }
+        }
+        return duesDeduction + totalServiceCharges;
     }
 
     private int NumberOfFridaysInPayPeriod(DateTime startDate, DateTime endDate)
