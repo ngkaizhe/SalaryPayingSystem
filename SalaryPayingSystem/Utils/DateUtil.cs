@@ -2,7 +2,7 @@
 
 public static class DateUtil
 {
-    public static bool IsInPayPeriod(this DateTime payDateTime, DateTime startDateTime, DateTime endDateTime)
+    public static bool IsInBetween(this DateTime payDateTime, DateTime startDateTime, DateTime endDateTime)
     {
         return payDateTime >= startDateTime && payDateTime <= endDateTime;
     }

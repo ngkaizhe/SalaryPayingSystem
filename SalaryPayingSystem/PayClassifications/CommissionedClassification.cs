@@ -34,7 +34,7 @@ public class CommissionedClassification(double commissionRate, double salary) : 
         {
             foreach (var salesReceipt in _salesReceipts)
             {
-                if(salesReceipt.Date.IsInPayPeriod(payCheck.PayPeriodEndDate.AddDays(-7-5), payCheck.PayPeriodEndDate.AddDays(-7)))
+                if(salesReceipt.Date.IsInBetween(payCheck.PayPeriodEndDate.AddDays(-7-5), payCheck.PayPeriodEndDate.AddDays(-7)))
                 {
                     totalPay += salesReceipt.Amount * CommissionRate;
                 }

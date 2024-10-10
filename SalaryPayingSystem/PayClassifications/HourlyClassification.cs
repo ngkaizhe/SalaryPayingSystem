@@ -14,7 +14,7 @@ public class HourlyClassification(double hourlyPay) : IPayClassification
         var totalPay = 0.0;
         foreach (var timeCard in _timeCards)
         {
-            if (timeCard.Date.IsInPayPeriod(payCheck.PayPeriodStartDate, payCheck.PayPeriodEndDate))
+            if (timeCard.Date.IsInBetween(payCheck.PayPeriodStartDate, payCheck.PayPeriodEndDate))
             {
                 totalPay += CalculatePayForTimeCard(timeCard);
             }
