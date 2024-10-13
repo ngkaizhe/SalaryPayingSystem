@@ -19,7 +19,7 @@ public class SalesReceiptsServiceTest
     }
     
     [Fact]
-    public void Execute_Always_AddSalesReceiptsToClassification()
+    public void AddSalesReceipts_Always_AddSalesReceiptsToClassification()
     {
         const string empId = "1";
         new AddCommissionedEmployee(empId, "John", "1234", 1000, 1.5).Execute();;
@@ -32,7 +32,6 @@ public class SalesReceiptsServiceTest
             Amount = amount,
             Date = dateTime,
         });
-        
         
         var employee = PayrollDatabase.GetEmployee(empId);
         var commissionedClassification = employee.PayClassification as CommissionedClassification;

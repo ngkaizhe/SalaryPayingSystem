@@ -19,7 +19,7 @@ public class TimeCardServiceTest
     }
 
     [Fact]
-    public void Execute_Always_AddTimeCardToClassification()
+    public void AddTimeCard_Always_AddTimeCardToClassification()
     {
         const string empId = "1";
         new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();

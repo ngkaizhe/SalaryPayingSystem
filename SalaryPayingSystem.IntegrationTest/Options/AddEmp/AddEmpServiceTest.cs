@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using FluentAssertions;
 using JetBrains.Annotations;
@@ -23,7 +22,7 @@ public class AddEmpServiceTest
     }
     
     [Fact]
-    public void Execute_AddHourlyEmployee_DatabaseHaveEmployee()
+    public void AddEmployee_Hourly_DatabaseHaveHourlyEmployee()
     {
         const string empId = "1";
         const string name = "John";
@@ -57,7 +56,7 @@ public class AddEmpServiceTest
     }
 
     [Fact]
-    public void Execute_AddMonthlyEmployee_DatabaseHaveEmployee()
+    public void AddEmployee_Monthly_DatabaseHaveMonthlyEmployee()
     {
         const string empId = "1";
         const string name = "John";
@@ -91,7 +90,7 @@ public class AddEmpServiceTest
     }
     
     [Fact]
-    public void Execute_AddCommissionedEmployee_DatabaseHaveEmployee()
+    public void AddEmployee_Commissioned_DatabaseHaveCommissionedEmployee()
     {
         const string empId = "1";
         const string name = "John";

@@ -19,7 +19,7 @@ public class ServiceChargeServiceTest
     }
 
     [Fact]
-    public void Execute_Always_AddServiceChargeToEmployee()
+    public void AddServiceCharge_Always_AddServiceChargeToEmployee()
     {
         const string empId = "1";
         new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();

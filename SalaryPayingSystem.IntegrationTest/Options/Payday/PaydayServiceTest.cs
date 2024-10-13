@@ -4,11 +4,9 @@ using JetBrains.Annotations;
 using SalaryPayingSystem.Databases;
 using SalaryPayingSystem.Options.Payday;
 using SalaryPayingSystem.Options.SalesReceipts;
-using SalaryPayingSystem.Options.ServiceCharges;
 using SalaryPayingSystem.Options.TimeCards;
 using SalaryPayingSystem.Transactions.AddEmp;
 using SalaryPayingSystem.Transactions.ChgEmp;
-using SalaryPayingSystem.Transactions.Payday;
 using SalaryPayingSystem.Transactions.ServiceCharges;
 using Xunit;
 
@@ -25,7 +23,7 @@ public class PaydayServiceTest
     }
     
     [Fact]
-    public void PaySingleMonthlyEmployee_NotLastDateOfMonth_PayCheckIsNull()
+    public void PayMonthlyEmployee_NotLastDayOfMonth_PayCheckIsNull()
     {
         const string empId = "1";
         const string name = "John";
@@ -45,7 +43,7 @@ public class PaydayServiceTest
     }
 
     [Fact]
-    public void PaySingleMonthlyEmployee_LastDateOfMonth_PayCheckWithCorrectInformation()
+    public void PayMonthlyEmployee_LastDateOfMonth_PayCheckWithCorrectInformation()
     {
         const string empId = "1";
         const string name = "John";
@@ -68,7 +66,7 @@ public class PaydayServiceTest
     }
     
     [Fact]
-    public void PaySingleMonthlyEmployee_NotFriday_PayCheckIsNull()
+    public void PayHourlyEmployee_NotFriday_PayCheckIsNull()
     {
         const string empId = "1";
         const string name = "John";
@@ -94,7 +92,7 @@ public class PaydayServiceTest
     }
     
     [Fact]
-    public void PaySingleHourlyEmployee_NoTimeCard_PayCheckIsNull()
+    public void PayHourlyEmployee_FridayButNoTimeCard_PayCheckIsNull()
     {
         const string empId = "1";
         const string name = "John";
@@ -113,7 +111,7 @@ public class PaydayServiceTest
     }
     
     [Fact]
-    public void PaySingleHourlyEmployee_OneTimeCardAndFriday_PayCheckHasCorrectInformation()
+    public void PayHourlyEmployee_TimeCardAndFriday_PayCheckHasCorrectInformation()
     {
         const string empId = "1";
         const string name = "John";
@@ -139,7 +137,7 @@ public class PaydayServiceTest
     }
     
     [Fact]
-    public void PaySingleHourlyEmployee_OneTimeCardWithOvertime_PayCheckHasCorrectInformation()
+    public void PayHourlyEmployee_TimeCardWithOvertime_PayCheckHasCorrectInformation()
     {
         const string empId = "1";
         const string name = "John";
@@ -164,7 +162,7 @@ public class PaydayServiceTest
     }
     
     [Fact]
-    public void PaySingleHourlyEmployee_MultipleTimeCard_PayCheckHasCorrectInformation()
+    public void PayHourlyEmployee_MultipleTimeCards_PayCheckHasCorrectInformation()
     {
         const string empId = "1";
         const string name = "John";
@@ -195,7 +193,7 @@ public class PaydayServiceTest
     }
     
     [Fact]
-    public void PaySingleHourlyEmployee_TimeCardsSpanningTwoDayPeriod_PayCheckOnlyPayCurrentDayPeriod()
+    public void PayHourlyEmployee_TimeCardSpanningTwoPayPeriods_PayCheckOnlyPayCurrentDayPeriod()
     {
         const string empId = "1";
         const string name = "John";
@@ -268,7 +266,7 @@ public class PaydayServiceTest
     }
     
     [Fact]
-    public void PayCommissionedEmployee_MultipleSalesReceiptsAndFriday_PayCheckHasCorrectInformation()
+    public void PayCommissionedEmployee_SalesReceiptsAndFriday_PayCheckHasCorrectInformation()
     {
         const string empId = "1";
         const string name = "John";
@@ -303,7 +301,7 @@ public class PaydayServiceTest
     }
     
     [Fact]
-    public void PayCommissionedEmployee_SalesReceiptsTwoWeekPeriod_PayCheckOnlyPayPastWeekPeriod()
+    public void PayCommissionedEmployee_SalesReceiptsSpanningTwoPayPeriods_PayCheckOnlyPayCurrentPayPeriod()
     {
         const string empId = "1";
         const string name = "John";

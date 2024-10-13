@@ -47,7 +47,7 @@ public class ChgEmpServiceTest
     }
     
     [Fact]
-    public void ChangeHourly_Always_ChangeEmployeeToHourly()
+    public void ChangeHourly_Always_ChangeEmployeeTypeToHourly()
     {
         const string empId = "1";
         new AddMonthlyEmployee(empId, "John", "1234", 1000).Execute();
@@ -65,7 +65,7 @@ public class ChgEmpServiceTest
     }
     
     [Fact]
-    public void ChangeMonthly_Always_ChangeEmployeeToMonthly()
+    public void ChangeMonthly_Always_ChangeEmployeeTypeToMonthly()
     {
         const string empId = "1";
         new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();
@@ -107,7 +107,7 @@ public class ChgEmpServiceTest
     }
     
     [Fact]
-    public void ChangeToHoldMethod_Always_ChangeEmployeeToHoldMethod()
+    public void ChangePaymentMethod_Hold_ChangeToHoldMethod()
     {
         const string empId = "1";
         new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();
@@ -124,7 +124,7 @@ public class ChgEmpServiceTest
     }
     
     [Fact]
-    public void ChangeToDirectMethod_Always_ChangeEmployeeToDirectMethod()
+    public void ChangePaymentMethod_Direct_ChangeToDirectMethod()
     {
         const string empId = "1";
         new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();
@@ -145,7 +145,7 @@ public class ChgEmpServiceTest
     }
     
     [Fact]
-    public void ChangeToMailMethod_Always_ChangeEmployeeToMailMethod()
+    public void ChangePaymentMethod_Mail_ChangeToMailMethod()
     {
         const string empId = "1";
         new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();
@@ -164,7 +164,7 @@ public class ChgEmpServiceTest
     }
     
     [Fact]
-    public void ChangeUnionMember_Always_ChangeEmployeeUnionMember()
+    public void ChangeAffiliation_UnionMember_ChangeToUnionMember()
     {
         const string empId = "1";
         new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();
@@ -186,7 +186,7 @@ public class ChgEmpServiceTest
     }
     
     [Fact]
-    public void ChangeNoMember_Always_ChangeEmployeeToNoMember()
+    public void ChangeAffiliation_NoMember_ChangeToNoMember()
     {
         const string empId = "1";
         new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();

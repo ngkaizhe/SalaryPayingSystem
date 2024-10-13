@@ -17,7 +17,7 @@ public class DelEmpServiceTest
     }
 
     [Fact]
-    public void Execute_Always_DeleteEmpCorrectly()
+    public void DeleteEmp_Always_DeleteEmpCorrectly()
     {
         const string empId = "1";
         new AddHourlyEmployee(empId, "John", "1234", 1000).Execute();
