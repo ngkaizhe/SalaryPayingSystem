@@ -97,4 +97,3 @@ classDiagram
 - PayrollDatabase.cs 可以真的串 database
 - PaymentMethod 同樣也可以串 database
 - 一堆 NullException 的 catch，不要讓程式因爲例外狀況而挂掉
-- 
