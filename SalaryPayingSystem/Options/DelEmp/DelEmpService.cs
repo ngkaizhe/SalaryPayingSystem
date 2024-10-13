@@ -6,7 +6,7 @@ public class DelEmpService
 {
     public int Execute(DelEmpOptions options)
     {
-        var transaction = new DeleteEmployee(options.EmpId);
+        var transaction = new DeleteEmployeeTransaction(options.EmpId);
         transaction.Execute();
         return 0;
     }   
