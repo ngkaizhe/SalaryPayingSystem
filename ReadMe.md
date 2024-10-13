@@ -1,4 +1,6 @@
 # SalaryPayingSystem
+## Introduction
+- 這是來自 `Agile Principles, Patterns, and Practices` 這本書的練習題目 (`薪水支付案例研究：實作`)
 ## 初略的 spec
 - 時薪工的員工一天工作超過 8 小時，超過時間的部分就會按照原本的實薪 * 1.5
 - 月薪員工會在每個月的最後一個工作日支付薪水
@@ -89,3 +91,10 @@ classDiagram
     UnionAffiliation : - Dues
     UnionAffiliation "1" --> "0..*" ServiceCharge
 ```
+
+
+## 還沒完成
+- PayrollDatabase.cs 可以真的串 database
+- PaymentMethod 同樣也可以串 database
+- 一堆 NullException 的 catch，不要讓程式因爲例外狀況而挂掉
+- 
