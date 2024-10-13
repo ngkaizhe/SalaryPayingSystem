@@ -2,7 +2,7 @@
 
 namespace SalaryPayingSystem.Transactions.DelEmp;
 
-public class DeleteEmployee(string empId) : ITransaction
+public class DeleteEmployeeTransaction(string empId) : ITransaction
 {
     public void Execute()
     {
